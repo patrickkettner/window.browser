@@ -6,7 +6,7 @@ Group: wecg
 Status: UD
 URL: https://patrickkettner.github.io/window.browser
 Editor: Patrick Kettner, Google, patrickkettner@google.com
-Abstract: This specification reserves the <code>window.browser</code> namespace for use by WebExtensions
+Abstract: This specification reserves the <code>window.browser</code> namespace for use by WebExtensions.
 Repository: patrickkettner/window.browser
 Complain About: accidental-2119 on, missing-example-ids on
 </pre>
