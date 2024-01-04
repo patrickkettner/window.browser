@@ -4,11 +4,15 @@ Shortname: wecg-browser
 Level: 1
 Group: wecg
 Status: UD
-URL: https://patrickkettner.github.io/window.browser
+URL: https://w3c.github.io/webextensions/specification/window.browser.html
 Editor: Patrick Kettner, Google, patrickkettner@google.com
 Abstract: This specification reserves the <code>window.browser</code> namespace for use by WebExtensions.
-Repository: patrickkettner/window.browser
+Repository: w3c/webextensions
 Complain About: accidental-2119 on, missing-example-ids on
+</pre>
+
+<pre class=link-defaults>
+spec:html; type:attribute; text:window
 </pre>
 
 <pre class="anchors">
@@ -17,8 +21,11 @@ spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/
 </pre>
 
 <section class="non-normative">
-  ## Introduction
+  ## Introduction {#introduction}
   <em>This section is non-normative.</em>
+
+  Browser extensions are programs to extend the capabilities of web browsers.
+  Although not standardized at first, web browsers have independently implemented a common interoperable set of extension APIs, called WebExtensions.
 
   Modern WebExtensions are an evolution of a system originally introduced in
   Chrome version 3. In that system, any API that was added was put under the
@@ -38,16 +45,36 @@ spec: html; urlPrefix: https://html.spec.whatwg.org/multipage/
 
   <section>
     <h3 id="window-interface">
-      <a attribute lt="orientation"><code>window.browser</code></a> API
+      <a attribute lt="browser"><code>window.browser</code></a> API
     </h3>
 
-  {{browser}} is UA defined attribute exposed on {{window}}. When implemented,
-  it MUST be used only for WebExtension related functionality.
+    {{browser}} is UA defined attribute exposed on {{window}}. When implemented,
+    it MUST be used only for WebExtension related functionality.
   </section>
 
 
-  <pre class="idl">
+<pre class="idl">
   partial interface Window {
-    readonly attribute short browser;
+   attribute object browser;
+  };
+
+</pre>
+
+  <section>
+    <h3 id="worker-interface">
+      Worker API
+    </h3>
+
+    When {{browser}} is defined on {{window}}, it SHOULD also be implemented on {{ServiceWorkerGlobalScope}} and {{DedicatedWorkerGlobalScope}}.
+    It MUST be used exclusivly for WebExtension purposes, however the contents of each instance of {{browser}} is UA defined.
+  </section>
+
+<pre class="idl">
+  partial interface DedicatedWorkerGlobalScope {
+    attribute object browser;
+  };
+
+  partial interface ServiceWorkerGlobalScope {
+    attribute object browser;
   };
 </pre>
